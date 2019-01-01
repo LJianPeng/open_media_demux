@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/SPas">
+        <file>Resources/SPas.ico</file>
+    </qresource>
+</RCC>
