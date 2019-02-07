@@ -1,0 +1,35 @@
+﻿生成启动时间为 2019/2/7 9:49:32。
+     1>项目“C:\Users\fmy\Desktop\open_media_demux-master\open_media_demux\SPas\SPas.vcxproj”在节点 2 上(Rebuild 个目标)。
+     1>CustomBuild:
+         Moc'ing sp_media_parser_qt.h...
+         Uic'ing sp_media_parser_qt.ui...
+         Rcc'ing sp_media_parser_qt.qrc...
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I..\3rdparty\ffmpeg\include /I. /I.\GeneratedFiles /ID:\ProgramFiles\Qt5.8.0\5.8\msvc2013\include /I.\GeneratedFiles\Debug /ID:\ProgramFiles\Qt5.8.0\5.8\msvc2013\include\QtCore /ID:\ProgramFiles\Qt5.8.0\5.8\msvc2013\include\QtGui /ID:\ProgramFiles\Qt5.8.0\5.8\msvc2013\include\QtWidgets /ZI /nologo /W1 /WX- /Od /Oy- /D UNICODE /D WIN32 /D WIN64 /D QT_DLL /D QT_CORE_LIB /D QT_GUI_LIB /D QT_WIDGETS_LIB /Gm- /EHsc /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt GeneratedFiles\Debug\moc_sp_media_parser_qt.cpp main.cpp sp_media_parser_qt.cpp sp_media_parser.cpp
+         moc_sp_media_parser_qt.cpp
+     1>c:\users\fmy\desktop\open_media_demux-master\open_media_demux\3rdparty\ffmpeg\include\libavutil\rational.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+         main.cpp
+     1>c:\users\fmy\desktop\open_media_demux-master\open_media_demux\3rdparty\ffmpeg\include\libavutil\rational.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+         sp_media_parser_qt.cpp
+     1>c:\users\fmy\desktop\open_media_demux-master\open_media_demux\3rdparty\ffmpeg\include\libavutil\rational.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+         sp_media_parser.cpp
+     1>c:\users\fmy\desktop\open_media_demux-master\open_media_demux\3rdparty\ffmpeg\include\libavutil\rational.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+         正在生成代码...
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I..\3rdparty\ffmpeg\include /I. /I.\GeneratedFiles /ID:\ProgramFiles\Qt5.8.0\5.8\msvc2013\include /I.\GeneratedFiles\Debug /ID:\ProgramFiles\Qt5.8.0\5.8\msvc2013\include\QtCore /ID:\ProgramFiles\Qt5.8.0\5.8\msvc2013\include\QtGui /ID:\ProgramFiles\Qt5.8.0\5.8\msvc2013\include\QtWidgets /ZI /nologo /W1 /WX- /Od /Oy- /D UNICODE /D WIN32 /D WIN64 /D QT_DLL /D QT_CORE_LIB /D QT_GUI_LIB /D QT_WIDGETS_LIB /Gm- /EHsc /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt GeneratedFiles\qrc_sp_media_parser_qt.cpp
+         qrc_sp_media_parser_qt.cpp
+       ResourceCompile:
+         C:\Program Files (x86)\Windows Kits\8.1\bin\x86\rc.exe /l"0x0409" /nologo /fo"Debug\SPas.res" SPas.rc 
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\fmy\Desktop\open_media_demux-master\open_media_demux\Win32\Debug\\StreamExtract.exe" /NOLOGO /LIBPATH:..\3rdparty\ffmpeg\bin /LIBPATH:D:\ProgramFiles\Qt5.8.0\5.8\msvc2013\lib avcodec.lib avdevice.lib avfilter.lib avformat.lib avutil.lib swresample.lib swscale.lib qtmaind.lib Qt5Cored.lib Qt5Guid.lib Qt5Widgetsd.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\fmy\Desktop\open_media_demux-master\open_media_demux\Win32\Debug\StreamExtract.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\fmy\Desktop\open_media_demux-master\open_media_demux\Win32\Debug\StreamExtract.lib" /MACHINE:X86 /SAFESEH Debug\SPas.res
+         Debug\moc_sp_media_parser_qt.obj
+         Debug\qrc_sp_media_parser_qt.obj
+         Debug\main.obj
+         Debug\sp_media_parser_qt.obj
+         Debug\sp_media_parser.obj
+     1>moc_sp_media_parser_qt.obj : warning LNK4075: 忽略“/EDITANDCONTINUE”(由于“/SAFESEH”规范)
+         SPas.vcxproj -> C:\Users\fmy\Desktop\open_media_demux-master\open_media_demux\Win32\Debug\StreamExtract.exe
+     1>已完成生成项目“C:\Users\fmy\Desktop\open_media_demux-master\open_media_demux\SPas\SPas.vcxproj”(Rebuild 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:13.07

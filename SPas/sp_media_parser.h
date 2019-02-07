@@ -32,7 +32,7 @@ extern "C"
 #include <stdint.h>
 }
 
-#define TRYVERSION			1   //试用版，限制50帧
+#define TRYVERSION			0   //试用版，限制50帧
 void sp_warning_msg_btn();
 
 
