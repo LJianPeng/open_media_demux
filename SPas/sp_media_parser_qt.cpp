@@ -1,5 +1,6 @@
 #include <qlabel.h>
 #include <stdio.h>
+#include <qdebug.h>
 #include "sp_media_parser.h"
 #include "sp_media_parser_qt.h"
 
@@ -13,6 +14,7 @@ SPas::SPas(QWidget *parent)
 
 	m_fmt_ctx = NULL;
 	m_filePath = "";							//文件路径+文件名
+	m_b_set_show_raw = 0;
 
 	setAcceptDrops(true);
 
@@ -42,7 +44,11 @@ SPas::SPas(QWidget *parent)
 		sp_about_msg_btn();
 	});
 
+	//显示裸码流数据
 	connect(ui.FrameListTableWidget, &QTableWidget::itemDoubleClicked, this, &SPas::sp_display_binary_hex);
+
+	//显示窗口显示裸码流的链接槽
+	connect(ui.RawStreamDisplay, SIGNAL(clicked(bool)), this, SLOT(sp_set_show_raw_stream(bool)));
 
 }
 
@@ -185,15 +191,15 @@ void SPas::sp_show_binary_text(QTableWidgetItem *item)
 	pPakt pakt = m_PaktList.at(itemRow);
 
 	int filePosOrg = ftell(m_videoParse.m_pFile);
-	fseek(m_videoParse.m_pFile, pakt->pkt_offset, SEEK_SET);
-	uint8t *pPaktData = new uint8t[pakt->pkt_size];
-	fread(pPaktData, 1, pakt->pkt_size, m_videoParse.m_pFile);
+	fseek(m_videoParse.m_pFile, pakt->pkt_realOffset, SEEK_SET);
+	uint8t *pPaktData = new uint8t[pakt->pkt_realSize];
+	fread(pPaktData, 1, pakt->pkt_realSize, m_videoParse.m_pFile);
 	fseek(m_videoParse.m_pFile, filePosOrg, SEEK_SET);
 
 	QString pkt_str = QString("%1\t").arg(0, 8, 16, QChar('0'));
 	if (pakt->pkt_str.isEmpty())
 	{
-		for (int i = 0; i < pakt->pkt_size; i++)
+		for (int i = 0; i < pakt->pkt_realSize; i++)
 		{
 			if (i % 16 == 0 && i)
 			{
@@ -225,27 +231,36 @@ void SPas::sp_display_binary_hex(QTableWidgetItem *item)
 	int itemRow = item->row();
 	ui.FrameShowBinaryText->setText("");
 	pPakt pakt = m_PaktList.at(itemRow);
+	uint8t *pPaktData;
 
 	//int filePosOrg = ftell(m_videoParse.m_pFile);
-	fseek(m_videoParse.m_pFile, pakt->pkt_offset, SEEK_SET);
-	uint8t *pPaktData = new uint8t[pakt->pkt_size];
-	fread(pPaktData, 1, pakt->pkt_size, m_videoParse.m_pFile);
+	if (m_b_set_show_raw){
+		fseek(m_videoParse.m_pFile, pakt->pkt_realOffset, SEEK_SET);
+		pPaktData = new uint8t[pakt->pkt_realSize];
+		fread(pPaktData, 1, pakt->pkt_realSize, m_videoParse.m_pFile);
+	}
+	else{
+		fseek(m_videoParse.m_pFile, pakt->pkt_offset, SEEK_SET);
+		pPaktData = new uint8t[pakt->pkt_size];
+		fread(pPaktData, 1, pakt->pkt_size, m_videoParse.m_pFile);
+	}
 	//fseek(m_videoParse.m_pFile, filePosOrg, SEEK_SET);
 
 	AVPacket opkt;
 	av_init_packet(&opkt);
 	opkt.data = pPaktData;
-	opkt.size = pakt->pkt_size;
-	do_packet_auto_bsf(m_fmt_ctx, &opkt);
+	opkt.size = m_b_set_show_raw ? pakt->pkt_realSize : pakt->pkt_size;
+	if (m_b_set_show_raw)
+		do_packet_auto_bsf(m_fmt_ctx, &opkt);
 
 
 	int posIndex = 0;
-	int displayRows = pakt->pkt_size / DISPLAYHEXROW + (pakt->pkt_size % DISPLAYHEXROW == 0 ? 0 : 1);
+	int displayRows = opkt.size / DISPLAYHEXROW + (opkt.size % DISPLAYHEXROW == 0 ? 0 : 1);
 	QString pkt_str;
 	for (int ir = 0; ir < displayRows; ir++)
 	{
 		QString str3, str1, str2;
-		int oneRowNum = (ir + 1) * DISPLAYHEXROW > pakt->pkt_size ? (pakt->pkt_size - ir * DISPLAYHEXROW) : DISPLAYHEXROW;
+		int oneRowNum = (ir + 1) * DISPLAYHEXROW > opkt.size ? (opkt.size - ir * DISPLAYHEXROW) : DISPLAYHEXROW;
 		
 		pkt_str += QString("%1\t").arg(ir, 8, 16, QChar('0'));
 		for (int ic = 0; ic < oneRowNum; ic++)
@@ -268,4 +283,16 @@ void SPas::sp_display_binary_hex(QTableWidgetItem *item)
 	}
 	ui.FrameShowBinaryText->setText(pkt_str);
 	//ui.FrameListTableWidget->clearSelection();//取消所有选中的行
+}
+
+void SPas::sp_set_show_raw_stream(bool flag)
+{
+	if (flag == true){
+		m_b_set_show_raw = 1;
+		qDebug() << "radio button 3 is checked!";
+	}
+	else{
+		m_b_set_show_raw = 0;
+		qDebug() << "radio button 3 is checked!";
+	}
 }

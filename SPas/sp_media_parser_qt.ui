@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>964</width>
-    <height>728</height>
+    <width>1022</width>
+    <height>754</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -35,32 +35,29 @@
       <property name="enabled">
        <bool>true</bool>
       </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <property name="inputMethodHints">
        <set>Qt::ImhHiddenText</set>
       </property>
       <property name="title">
        <string/>
       </property>
-      <layout class="QGridLayout" name="gridLayout" rowstretch="6,0,3" columnstretch="1,0" rowminimumheight="0,0,0">
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
-        <number>0</number>
-       </property>
-       <property name="spacing">
-        <number>6</number>
-       </property>
-       <item row="0" column="0" colspan="2">
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="0" colspan="3">
         <widget class="QTableWidget" name="FrameListTableWidget">
          <property name="enabled">
           <bool>true</bool>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>460</height>
+          </size>
          </property>
          <property name="contextMenuPolicy">
           <enum>Qt::CustomContextMenu</enum>
@@ -148,6 +145,13 @@
         </widget>
        </item>
        <item row="1" column="1">
+        <widget class="QLabel" name="FrameShowBinaryTextLabel_2">
+         <property name="text">
+          <string>Button Group</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
         <widget class="QLabel" name="MediaInfoLable">
          <property name="text">
           <string>Media Info</string>
@@ -155,10 +159,31 @@
         </widget>
        </item>
        <item row="2" column="0">
-        <widget class="QTextEdit" name="FrameShowBinaryText"/>
+        <widget class="QTextEdit" name="FrameShowBinaryText">
+         <property name="minimumSize">
+          <size>
+           <width>700</width>
+           <height>200</height>
+          </size>
+         </property>
+        </widget>
        </item>
        <item row="2" column="1">
-        <widget class="QTextEdit" name="MediaInfo"/>
+        <widget class="QRadioButton" name="RawStreamDisplay">
+         <property name="text">
+          <string>显示裸码流</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QTextEdit" name="MediaInfo">
+         <property name="minimumSize">
+          <size>
+           <width>160</width>
+           <height>200</height>
+          </size>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -170,7 +195,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>964</width>
+     <width>1022</width>
      <height>26</height>
     </rect>
    </property>

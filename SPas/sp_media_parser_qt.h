@@ -30,10 +30,14 @@ public:
 	}FrameItem, *PFrameItem;
 
 	typedef struct Pakt{
-		int16t pkt_offset;
-		int16t pkt_size;
+		int16t pkt_realOffset;								//裸数据起始偏移（格式封装层）
+		int16t pkt_realSize;								//裸数据的长度
+		int16t pkt_offset;										//原始数据的起始偏移
+		int16t pkt_size;										//原始数据的长度
 		QString pkt_str;
 	}Pakt, *pPakt;
+
+	bool  m_b_set_show_raw;									//在显示窗口是否显示裸码流
 
 public:
 	SPas(QWidget *parent = 0);
@@ -53,6 +57,10 @@ public slots:
 	void sp_display_binary_hex(QTableWidgetItem *item);
 	void on_FrameListTableWidget_customContextMenuRequested(QPoint pos);  //为QTableWidget添加右键菜单项,保存裸码流用
 	int  sp_parser_packet(AVFormatContext *fmt_ctx ,AVCodecContext *pCodecContext, AVCodecParserContext *pParserContext, AVPacket *pkt);
+	
+	//显示裸码流按钮事件
+	void sp_set_show_raw_stream(bool flag);
+
 private:
 	Ui::SPasClass ui;
 	QString m_filePath;

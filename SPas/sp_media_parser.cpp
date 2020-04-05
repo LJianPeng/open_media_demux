@@ -362,8 +362,10 @@ void SPas::sp_parser_stream_info()
 
 			//输出媒体信息
 			pPakt pPakt = new Pakt;
-			pPakt->pkt_offset = pkt.pos;
-			pPakt->pkt_size = pkt.size;
+			pPakt->pkt_realOffset = pkt.pos;
+			pPakt->pkt_realSize = pkt.size;
+			pPakt->pkt_offset = pkt.pos - (pkt.buf->size - pkt.size);
+			pPakt->pkt_size = pkt.buf->size;
 			m_PaktList.append(pPakt);
 
 			mediainfo.frame_idx = frameCount;
