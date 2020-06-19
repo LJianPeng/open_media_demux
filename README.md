@@ -1,4 +1,4 @@
-# 未经允许，不允许商业用途  
+# 未经允许，不得商业用途  
 extract raw stream(h264/h265) frome media video  
 
 
